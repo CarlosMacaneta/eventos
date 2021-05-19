@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HelloWorldController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,10 +23,18 @@ Route::get('/', function () {
 | Indicating ? after the parameter means not mandatory parameter
 | When your parament is not mandatory you might give a default value on the function param
 */
-Route::get('/hello/{name}', function ($name) {
+/*Route::get('/hello/{name}', function ($name) {
     return "Hello, ". $name;
-});
+});*/
 //non mandatory param
-Route::get('/hello/{id?}', function ($id = "-1") {
+/*Route::get('/hello/{id?}', function ($id = "-1") {
     return "Hello, ". $id;
-});
+});*/
+
+/*
+| Routes with controllers
+| Route::function(page, [Controller class, method name]);
+*/
+Route::get('/hello', [HelloWorldController::class, 'helloworld']);
+
+Route::get('/hello/{name?}', [HelloWorldController::class, 'hello']);
