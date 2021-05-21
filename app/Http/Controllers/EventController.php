@@ -10,14 +10,14 @@ class EventController extends Controller
 {
     public function index() 
     {
-        $events = Event::get();
+        $events = Event::all();
 
-        return view("", compact($events));
+        return view('events.index', compact($events));
     }
 
     public function create() 
     {
-        return view("");
+        return view('events.create');
     }
 
     public function store(EventRequest $request) 
@@ -33,7 +33,7 @@ class EventController extends Controller
             return redirect()->back();
         }
 
-        return view('', compact($event));
+        return view('events/show', compact($event));
     }
 
     public function edit($id) 
@@ -42,7 +42,7 @@ class EventController extends Controller
             return redirect()->back();
         }
 
-        return view('', compact($event));
+        return view('events/edit', compact($event));
     }
 
     public function update(EventRequest $request, $id)
@@ -53,7 +53,7 @@ class EventController extends Controller
 
         $event->update($request->all());
 
-        return view('', compact($event));
+        return view('events/update', compact($event));
     }
 
     public function destroy($id)
@@ -64,6 +64,6 @@ class EventController extends Controller
 
         $event->delete();
 
-        return view('', compact($event));
+        return view('events/destroy', compact($event));
     }
 }
