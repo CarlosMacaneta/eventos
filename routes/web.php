@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HelloWorldController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,10 @@ Route::get('/', function () {
 | Routes with controllers
 | Route::function(page, [Controller class, method name]);
 */
-Route::get('/hello', [HelloWorldController::class, 'helloworld']);
+/*Route::get('/hello', [HelloWorldController::class, 'helloworld'//]);
 
-Route::get('/hello/{name?}', [HelloWorldController::class, 'hello']);
+Route::get('/hello/{name?}', [HelloWorldController::class, 'hello']);*/
+
+Auth::routes();
+
+Route::get('/eventos', [App\Http\Controllers\EventController::class, 'index'])->name('events');
