@@ -37,39 +37,29 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
+                    <ul class="navbar-nav ml-auto">                            
+                        @php
+                            $currentUrl = Request::url();
+                            $routeListEvent = route('listevents');
+                        @endphp
+                        
+                        @if ($currentUrl === $routeListEvent)
+                            @if (Route::has('addevents'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link btn btn-primary text-white" href="{{ route('addevents') }}" role="button">
+                                        <i class="fas fa-plus-circle" aria-hidden="true"></i> Adicionar Evento
+                                    </a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                            @if (Route::has('listevents'))
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-primary text-white" href="{{ route('listevents') }}" role="button">
+                                        <i class="fa fa-list-ul" aria-hidden="true"></i> Lista de Eventos
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+                                </li>
+                            @endif
+                        @endif
                     </ul>
                 </div>
             </div>

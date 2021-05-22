@@ -25,11 +25,12 @@ Route::get('/ww', [EventController::class, 'index'])->name('events.index');
 Route::get('/eventos/registar', [EventController::class, 'create'])->name('events.create');
 Route::get('/eventos/detalhes', function () {
     return view('events/detail');
-});
+})->name('details');
 
 Route::get('/eventos/registar', function() {
     return view('events/create');
-});
+})->name('addevents');
+
 Route::get('/', function () {
     return view('events.index');
-});
+})->name('listevents');

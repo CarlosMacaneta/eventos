@@ -13,17 +13,25 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Local</th>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Hora</th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     @for ($i = 1; $i <= 3; $i++)
                                         <tr>
                                             <th scope="row">{{ $i }}</th>
-                                            <td>Mark {{ $i }}</td>
-                                            <td>Otto {{ $i }}</td>
+                                            <td>
+                                                <a href="{{ route('details') }}" class="text-decoration-none text-center">
+                                                    Mark {{ $i }}
+                                                </a>
+                                            </td>
+                                            <td>Maputo {{ $i }}</td>
+                                            <td>17/05/2021</td>
+                                            <td>14:00</td>
                                             <td>
                                                 <a href="#" class="text-decoration-none text-center">
                                                     <i class="fas fa-trash fa-lg text-danger"></i>
