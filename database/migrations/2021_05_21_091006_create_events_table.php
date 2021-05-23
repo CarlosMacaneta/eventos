@@ -17,7 +17,8 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('address', 255);
-            $table->timestamp('scheduled_event');
+            $table->date('date');
+            $table->string('time');
             $table->timestamps();
         });
     }

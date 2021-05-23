@@ -40,21 +40,21 @@
                     <ul class="navbar-nav ml-auto">                            
                         @php
                             $currentUrl = Request::url();
-                            $routeListEvent = route('listevents');
+                            $routeListEvent = route('events.index');
                         @endphp
                         
                         @if ($currentUrl === $routeListEvent)
-                            @if (Route::has('addevents'))
+                            @if (Route::has('events.create'))
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-primary text-white" href="{{ route('addevents') }}" role="button">
+                                    <a class="nav-link btn btn-primary text-white" href="{{ route('events.create') }}" role="button">
                                         <i class="fas fa-plus-circle" aria-hidden="true"></i> Adicionar Evento
                                     </a>
                                 </li>
                             @endif
                         @else
-                            @if (Route::has('listevents'))
+                            @if (Route::has('events.index'))
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-primary text-white" href="{{ route('listevents') }}" role="button">
+                                    <a class="nav-link btn btn-primary text-white" href="{{ route('events.index') }}" role="button">
                                         <i class="fa fa-list-ul" aria-hidden="true"></i> Lista de Eventos
                                     </a>
                                 </li>

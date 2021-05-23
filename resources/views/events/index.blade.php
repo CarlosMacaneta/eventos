@@ -5,20 +5,22 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header"><h5>Lista de eventos</h5></div>
+                    <div class="card-header">
+                        <h5>Lista de eventos</h5>
+                    </div>
 
                     <div class="card-body">
                         <div class="container">
                             <table class="table">
                                 <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Local</th>
-                                    <th scope="col">Data</th>
-                                    <th scope="col">Hora</th>
-                                    <th scope="col"></th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Local</th>
+                                        <th scope="col">Data</th>
+                                        <th scope="col">Hora</th>
+                                        <th scope="col"></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @for ($i = 1; $i <= 3; $i++)
@@ -41,6 +43,13 @@
                                     @endfor
                                 </tbody>
                             </table>
+
+                            {{-- Pagination --}}
+                            {{-- 
+                            <div class="d-flex justify-content-center">
+                               {!! $events->appends(['sort' => ''])->links() !!} 
+                            </div> 
+                            --}}
                         </div>
                     </div>
 

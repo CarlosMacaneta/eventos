@@ -15,12 +15,9 @@ class CreateParticipantsTable extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
-            $table->integer('event_id');
-            $table->integer('guest_id');
+            $table->foreignId('event_id')->constrained('events')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('guest_id')->nullable()->constrained('guests');
             $table->timestamps();
-
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('guest_id')->references('id')->on('guests');
         });
     }
 
