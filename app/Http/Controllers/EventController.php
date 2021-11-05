@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
-use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    public function index() 
+    public function index()
     {
-        $events = Event::pagination();
+        $events = Event::latest()->paginate();
 
-        return view('events.index', compact($events));
+        return view('events.index', compact('events'));
     }
 
     /**
@@ -20,7 +19,7 @@ class EventController extends Controller
      *
      * @return void
      */
-    public function create() 
+    public function create()
     {
         return view('events.create');
     }
@@ -31,50 +30,50 @@ class EventController extends Controller
      * @param EventRequest $request
      * @return void
      */
-    public function store(EventRequest $request) 
+    public function store(EventRequest $request)
     {
         Event::create($request->all());
 
-        return redirect()->back();
+        return redirect()->to('events.index');
     }
 
     public function show($id)
     {
-        if ($event = Event::find()) {
+        if (!$event = Event::find($id)) {
             return redirect()->back();
         }
 
-        return view('events.show', compact($event));
+        return view('events.show', compact('event'));
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
-        if ($event = Event::find()) {
+        if (!$event = Event::find($id)) {
             return redirect()->back();
         }
 
-        return view('events.edit', compact($event));
+        return view('events.edit', compact('event'));
     }
 
     public function update(EventRequest $request, $id)
     {
-        if ($event = Event::find()) {
+        if (!$event = Event::find($id)) {
             return redirect()->back();
         }
 
         $event->update($request->all());
 
-        return view('events.update', compact($event));
+        return view('events.update', compact('event'));
     }
 
     public function destroy($id)
     {
-        if ($event = Event::find()) {
+        if (!$event = Event::find($id)) {
             return redirect()->back();
         }
 
         $event->delete();
 
-        return view('events/destroy', compact($event));
+        return view('events.destroy', compact('event'));
     }
 }

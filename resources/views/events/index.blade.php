@@ -11,49 +11,57 @@
 
                     <div class="card-body">
                         <div class="container">
-                            <table class="table">
+                            <table class="table table-bordered table-striped table-hover">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">Nome</th>
                                         <th scope="col">Local</th>
                                         <th scope="col">Data</th>
                                         <th scope="col">Hora</th>
-                                        <th scope="col"></th>
+                                        <th scope="col" colspan="2" class="text-center">Acções</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for ($i = 1; $i <= 3; $i++)
+                                    @if (count($events) > 0)
+                                        @foreach ($events as $event)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ route('events.show', $event->id) }}" class="text-decoration-none text-center">
+                                                        {{ $event->name }}
+                                                    </a>
+                                                </td>
+                                                <td>{{ $event->address }}</td>
+                                                <td>{{ $event->date }}</td>
+                                                <td>{{ $event->time }}</td>
+                                                <td>
+                                                    <a href="{{ route('events.edit', $event->id) }}" class="btn btn-primary btn-sm" role="button">
+                                                        Editar
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('events.destroy', $event->id) }}" class="btn btn-danger btn-sm" role="button">
+                                                        Remover
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
                                         <tr>
-                                            <th scope="row">{{ $i }}</th>
-                                            <td>
-                                                <a href="{{ route('details') }}" class="text-decoration-none text-center">
-                                                    Mark {{ $i }}
-                                                </a>
-                                            </td>
-                                            <td>Maputo {{ $i }}</td>
-                                            <td>17/05/2021</td>
-                                            <td>14:00</td>
-                                            <td>
-                                                <a href="#" class="text-decoration-none text-center">
-                                                    <i class="fas fa-trash fa-lg text-danger"></i>
-                                                </a>
-                                            </td>
+                                            <td colspan="7" class="text-center">Não temos eventos disponíveis do momento.</td>
                                         </tr>
-                                    @endfor
+                                    @endif
                                 </tbody>
                             </table>
-
-                            {{-- Pagination --}}
-                            {{-- 
-                            <div class="d-flex justify-content-center">
-                               {!! $events->appends(['sort' => ''])->links() !!} 
-                            </div> 
-                            --}}
                         </div>
                     </div>
 
-                    <div class="card-footer"><strong>Total de eventos:</strong> 10</div>
+                    <div class="card-footer">
+                        <strong>Total de eventos:</strong> {{ count($events) }}
+
+                        <div align="right">
+                            {{ $events->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

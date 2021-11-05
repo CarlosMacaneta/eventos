@@ -8,18 +8,18 @@
                     <div class="card-header"><h4 class="text-center">Registo de Eventos</h4></div>
 
                     <div class="card-body">
-                        <form action="" method="post">
+                        <form action="{{ route('events.store') }}" method="post">
                             @csrf
 
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="eventName">Nome do evento</label>
-                                    <input type="text" name="eventName" id="eventName" class="form-control" placeholder="Nome do evento">
+                                    <label for="name">Nome do evento</label>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Nome do evento">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-7">
-                                    <label for="">Local do evento</label>
+                                    <label for="address">Local do evento</label>
                                     <input type="text" name="address" id="address" class="form-control" placeholder="Local do evento">
                                 </div>
                                 <div class="col-md-auto">
