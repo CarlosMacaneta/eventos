@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GuestController;
-use App\Models\Event;
 use App\Models\Guest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,17 +25,6 @@ Auth::routes();
 
 // Events routes
 Route::resource('events', EventController::class);
-/*Route::get('/events/register', [EventController::class, 'create'])->name('events.create');
-Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update');
-Route::get('/events/edit/{id}', [EventController::class, 'edit'])->name('events.edit');
-Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
-Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
-Route::post('/events', [EventController::class, 'store'])->name('events.store');
-Route::get('/events', [EventController::class, 'index'])->name('events.index');
-// Transform to JSON
-Route::get('/convert-event-to-json', function () {
-    return Event::paginate(5);
-});*/
 
 // Guests routes
 Route::put('/guests/{id}', [GuestController::class, 'update'])->name('guests.update');
