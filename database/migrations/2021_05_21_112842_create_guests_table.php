@@ -18,6 +18,7 @@ class CreateGuestsTable extends Migration
             $table->string('name', 255);
             $table->string('place', 255);
             $table->integer('per_num', false, true);
+            $table->foreignId('event_id')->nullable(false)->constrained('events')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

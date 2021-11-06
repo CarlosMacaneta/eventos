@@ -25,7 +25,8 @@ class GuestRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:120',
-            'place' => 'required|min:3|max:50'
+            'place' => 'required|min:3|max:50',
+            'per_num' => 'required'
         ];
     }
 }

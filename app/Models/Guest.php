@@ -12,6 +12,7 @@ class Guest extends Model
     protected $fillable = [
         'name',
         'place',
-        'per_num'
+        'per_num',
+        'event_id'
     ];
 }

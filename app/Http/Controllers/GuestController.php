@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GuestRequest;
 use App\Models\Guest;
-use Illuminate\Http\Request;
 
 class GuestController extends Controller
 {
@@ -29,7 +28,7 @@ class GuestController extends Controller
 
     public function show($id) 
     {
-        if ($guest = Guest::find($id)) {
+        if (!$guest = Guest::find($id)) {
             return redirect()->back();
         }
 
@@ -43,7 +42,7 @@ class GuestController extends Controller
 
     public function update(GuestRequest $request, $id) 
     {
-        if ($guest = Guest::find($id)) {
+        if (!$guest = Guest::find($id)) {
             return redirect()->back();
         }
 
@@ -54,12 +53,12 @@ class GuestController extends Controller
 
     public function destroy($id)
     {
-        if ($guest = Guest::find($id)) {
+        if (!$guest = Guest::find($id)) {
             return redirect()->back();
         }
 
         $guest->delete();
 
-        return view('guests.destroy', compact($guest));
+        return redirect()->back();
     }
 }

@@ -19,13 +19,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('events.index');
+    return view('welcome');
 });
 
 Auth::routes();
 
 // Events routes
-Route::get('/events/register', [EventController::class, 'create'])->name('events.create');
+Route::resource('events', EventController::class);
+/*Route::get('/events/register', [EventController::class, 'create'])->name('events.create');
 Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update');
 Route::get('/events/edit/{id}', [EventController::class, 'edit'])->name('events.edit');
 Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
@@ -35,16 +36,15 @@ Route::get('/events', [EventController::class, 'index'])->name('events.index');
 // Transform to JSON
 Route::get('/convert-event-to-json', function () {
     return Event::paginate(5);
-});
+});*/
 
 // Guests routes
-Route::get('/guests/register', [GuestController::class, 'create'])->name('guests.create');
+Route::put('/guests/{id}', [GuestController::class, 'update'])->name('guests.update');
+Route::get('/guests/edit/{id}', [GuestController::class, 'edit'])->name('guests.edit');
+Route::delete('/guests/{id}', [GuestController::class, 'destroy'])->name('guests.destroy');
+Route::post('/guests/{id}', [GuestController::class, 'show'])->name('guests.show');
 Route::post('/guests', [GuestController::class, 'store'])->name('guests.store');
 Route::get('/guests', [GuestController::class, 'index'])->name('guests.index');
-Route::post('/guests/{id}', [GuestController::class, 'show'])->name('guests.show');
-Route::get('/guests/{id}', [GuestController::class, 'edit'])->name('guests.edit');
-Route::put('/guests/{id}', [GuestController::class, 'update'])->name('guests.update');
-Route::delete('/guests/{id}', [GuestController::class, 'destroy'])->name('guests.destroy');
 // Transform to JSON
 Route::get('/convert-guest-to-json', function () {
     return Guest::paginate(5);

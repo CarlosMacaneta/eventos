@@ -15,4 +15,11 @@ class Event extends Model
         'date',
         'time'
     ];
+
+    public function getGuests()
+    {
+        $guests = Guest::where('event_id', $this->id)->paginate(3);
+
+        return compact('guests');
+    }
 }

@@ -9,7 +9,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::latest()->paginate();
+        $events = Event::latest()->paginate(7);
 
         return view('events.index', compact('events'));
     }
@@ -34,7 +34,7 @@ class EventController extends Controller
     {
         Event::create($request->all());
 
-        return redirect()->to('events.index');
+        return redirect()->back();
     }
 
     public function show($id)
@@ -42,7 +42,7 @@ class EventController extends Controller
         if (!$event = Event::find($id)) {
             return redirect()->back();
         }
-
+        
         return view('events.show', compact('event'));
     }
 

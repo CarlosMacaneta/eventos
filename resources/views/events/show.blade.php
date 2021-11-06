@@ -26,29 +26,63 @@
                         <div class="row">
                             <div class="col-sm-8"><h5>Lista de convidados</h5></div>
                             <div class="col-sm-4">
-                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#guest-form">Adicionar</button>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#guest-modal-form">Adicionar</button>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped table-hover">
-                            <thead>
+                            <thead class="thead-dark">
                                 <th scope="col">Código</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Mesa</th>
+                                <th scope="col">Nº. de pessoas</th>
                                 <th scope="col" colspan="2" class="text-center">Acções</th>
                             </thead>
                             <tbody>
-
+                                @if (count($event->getGuests()['guests']) > 0)
+                                    @foreach ($event->getGuests()['guests'] as $guest)
+                                        <tr>
+                                            <td>{{ $guest->id }}</td>
+                                            <td>{{ $guest->name }}</td>
+                                            <td>{{ $guest->place }}</td>
+                                            <td>{{ $guest->per_num }}</td>
+                                            <td>
+                                                <a href="{{ route('guests.edit', $guest->id) }}" class="btn btn-primary btn-sm" role="button">
+                                                    Editar
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('guests.destroy', $guest->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-sm" type="submit" data-dismiss="modal">Remover</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="6" class="text-center">Não temos convidados para este evento.</td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
+                    </div>
+                    <div class="card-footer align-items-end">
+                        <div class="row">
+                            <div class="col-sm-12 align-items-end">
+                                {{ $event->getGuests()['guests']->links() }}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
         <!--MODAL-->
-        <div class="modal fade" id="guest-form" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
+        <div class="modal fade" id="guest-modal-form" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Registo do convidado</h5>
@@ -62,7 +96,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <form action="{{ route('guests.store') }}" method="post">
+                                    <form action="{{ route('guests.store') }}" method="post" id="guest-form">
                                         @csrf
 
                                         <div class="form-group row">
@@ -80,12 +114,15 @@
                                                 <label for="per_num">Número de pessoas</label>
                                                 <input type="number" name="per_num" id="per_num" class="form-control" min="0" max="6">
                                             </div>
+                                            <div class="col-md-auto">
+                                                <input type="hidden" name="event_id" id="event_id" value="{{ $event->id }}">
+                                            </div>
                                         </div>
 
                                         <div class="form-group row modal-footer">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <button type="submit" class="btn btn-primary">Registar</button>
+                                                    <button type="submit" class="btn btn-primary" name="btn_reg" id="btn_reg">Registar</button>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <button class="btn btn-danger" type="button" data-dismiss="modal">Fechar</button>
@@ -94,6 +131,47 @@
                                         </div>
                                     </form>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--FIM-->
+        <!--MODAL-->
+        <div class="modal fade" id="guest-modal-del" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmar acção</h5>
+                        <button class="close" type="button" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    @php
+                        $name = '';
+                        $id = 0;
+                    @endphp
+                    <script>
+                        $(document).ready(function(){
+                            $('#delete').click(function(){
+                                $name = $(this).val('name');
+                                $id = document.getElementById('guest-id').value;
+                                $name = 'a';
+                            });
+
+                        });
+                    </script>
+                    <div class="modal-body">
+                        <p id="msg">Tem certeza que deseja remover {{ $name }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-sm-auto">
+                                
+                            </div>
+                            <div class="col-sm-auto">
+                                <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </div>

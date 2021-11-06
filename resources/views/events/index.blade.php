@@ -56,10 +56,11 @@
                     </div>
 
                     <div class="card-footer">
-                        <strong>Total de eventos:</strong> {{ count($events) }}
-
-                        <div align="right">
-                            {{ $events->links() }}
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <strong>Total de eventos:</strong> {{ count($events) }}
+                            </div>
+                            <div class="col-sm-5">{{ $events->links() }}</div>
                         </div>
                     </div>
                 </div>
