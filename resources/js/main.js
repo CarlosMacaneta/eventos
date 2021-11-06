@@ -22,6 +22,16 @@ $(document).ready(function() {
         });
     });
 
+    $('.edit').on('click', function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('edit-modal-form').modal('show');
+    });
+
     $('.delete').on('click', function() {
         $.ajaxSetup({
             headers: {
