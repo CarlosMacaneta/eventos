@@ -56,7 +56,7 @@
                                                 <form action="{{ route('guests.destroy', $guest->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm" type="submit" data-dismiss="modal">Remover</button>
+                                                    <button class="btn btn-danger btn-sm" type="submit">Remover</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -131,47 +131,6 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--FIM-->
-        <!--MODAL-->
-        <div class="modal fade" id="guest-modal-del" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Confirmar acção</h5>
-                        <button class="close" type="button" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                    @php
-                        $name = '';
-                        $id = 0;
-                    @endphp
-                    <script>
-                        $(document).ready(function(){
-                            $('#delete').click(function(){
-                                $name = $(this).val('name');
-                                $id = document.getElementById('guest-id').value;
-                                $name = 'a';
-                            });
-
-                        });
-                    </script>
-                    <div class="modal-body">
-                        <p id="msg">Tem certeza que deseja remover {{ $name }}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="row">
-                            <div class="col-sm-auto">
-                                
-                            </div>
-                            <div class="col-sm-auto">
-                                <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </div>

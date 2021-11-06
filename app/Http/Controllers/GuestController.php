@@ -7,37 +7,11 @@ use App\Models\Guest;
 
 class GuestController extends Controller
 {
-    public function index()
-    {
-        $guest = Guest::all();
-
-        return view('guests.index', compact($guest));
-    }
-
-    public function create() 
-    {
-        return view('guests.create');
-    }
-
     public function store(GuestRequest $request)
     {
         Guest::create($request->all());
 
         return redirect()->back();
-    }
-
-    public function show($id) 
-    {
-        if (!$guest = Guest::find($id)) {
-            return redirect()->back();
-        }
-
-        return view('guests.show', compact($guest));
-    }
-
-    public function edit($id)
-    {
-        return view('guests.edit');
     }
 
     public function update(GuestRequest $request, $id) 
@@ -48,7 +22,7 @@ class GuestController extends Controller
 
         $guest->update($request->all());
 
-        return view('guests.update', compact($guest));
+        return redirect()->back();
     }
 
     public function destroy($id)

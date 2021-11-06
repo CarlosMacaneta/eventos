@@ -39,9 +39,13 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('events.destroy', $event->id) }}" class="btn btn-danger btn-sm" role="button">
-                                                        Remover
-                                                    </a>
+                                                    <form action="{{ route('events.destroy', $event->id) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            Remover
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

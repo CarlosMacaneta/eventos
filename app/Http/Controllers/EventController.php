@@ -63,7 +63,7 @@ class EventController extends Controller
 
         $event->update($request->all());
 
-        return view('events.update', compact('event'));
+        return redirect()->route('events.index');
     }
 
     public function destroy($id)
@@ -74,6 +74,6 @@ class EventController extends Controller
 
         $event->delete();
 
-        return view('events.destroy', compact('event'));
+        return redirect()->route('events.index');
     }
 }
