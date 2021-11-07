@@ -14,11 +14,12 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-12">
-                            <form action="{{ route('guests.store') }}" method="post" id="guest-form">
+                            <form  method="post" id="guest-form-ed">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group row">
                                     <div class="col-md-12">
+                                        <input type="hidden" name="guest_id" id="guest_id" value="">
                                         <label for="name">Nome do convidado</label>
                                         <input type="text" name="name" id="name" class="form-control" placeholder="Nome do convidado">
                                     </div>
@@ -33,14 +34,14 @@
                                         <input type="number" name="per_num" id="per_num" class="form-control" min="0" max="6">
                                     </div>
                                     <div class="col-md-auto">
-                                        <input type="hidden" name="event_id" id="event_id" value="{{ $event->id }}">
+                                        <input type="hidden" name="event_id" id="event_id" value="">
                                     </div>
                                 </div>
 
                                 <div class="form-group row modal-footer">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-primary" name="btn_reg" id="btn_reg">Registar</button>
+                                            <button type="submit" class="btn btn-primary" name="btn_reg" id="btn_reg">Actualizar</button>
                                         </div>
                                         <div class="col-sm-6">
                                             <button class="btn btn-danger" type="button" data-dismiss="modal">Fechar</button>

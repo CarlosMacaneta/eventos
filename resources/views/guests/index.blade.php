@@ -25,9 +25,9 @@
                             <td>{{ $guest->place }}</td>
                             <td>{{ $guest->per_num }}</td>
                             <td>
-                                <a href="{{ route('guests.edit', $guest->id) }}" class="btn btn-primary btn-sm" role="button">
+                                <button class="btn btn-primary btn-sm edit" role="button" data-toggle="modal" data-target="#guest-modal-ed-form" id="{{ $guest->id }}">
                                     Editar
-                                </a>
+                                </button>
                             </td>
                             <td>
                                 <form action="{{ route('guests.destroy', $guest->id) }}" method="post">
@@ -52,6 +52,5 @@
                 {{ $event->getGuests()['guests']->links() }}
             </div>
         </div>
-
     </div>
 </div>

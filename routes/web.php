@@ -30,7 +30,7 @@ Route::resource('events', EventController::class);
 Route::put('/guests/{id}', [GuestController::class, 'update'])->name('guests.update');
 Route::get('/guests/edit/{id}', [GuestController::class, 'edit'])->name('guests.edit');
 Route::delete('/guests/{id}', [GuestController::class, 'destroy'])->name('guests.destroy');
-Route::post('/guests/{id}', [GuestController::class, 'show'])->name('guests.show');
+Route::get('/guests/{id}', [GuestController::class, 'show'])->name('guests.show');
 Route::post('/guests', [GuestController::class, 'store'])->name('guests.store');
 Route::get('/guests', [GuestController::class, 'index'])->name('guests.index');
 // Transform to JSON

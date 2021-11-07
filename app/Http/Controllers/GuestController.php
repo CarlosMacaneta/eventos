@@ -14,15 +14,24 @@ class GuestController extends Controller
         return redirect()->back();
     }
 
-    public function update(GuestRequest $request, $id) 
+    public function show($id)
+    {
+        if(!$guest = Guest::find($id)){
+            return redirect()->back();
+        }
+
+        return response()->json($guest, 200);
+    }
+
+    public function update(GuestRequest $request, $id)
     {
         if (!$guest = Guest::find($id)) {
             return redirect()->back();
         }
-
+        
         $guest->update($request->all());
 
-        return redirect()->back();
+        return response()->json(['message' => 'success'], 200);
     }
 
     public function destroy($id)
